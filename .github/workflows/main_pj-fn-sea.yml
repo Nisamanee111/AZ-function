@@ -9,11 +9,6 @@ on:
    paths:
    - 'function_app.py'
    - 'requirements.txt'
-   pull_request:
-    paths:
-   - 'function_app.py'
-   - 'requirements.txt'
-   
   workflow_dispatch:
 
 env:
