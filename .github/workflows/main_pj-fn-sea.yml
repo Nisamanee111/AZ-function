@@ -9,7 +9,7 @@ on:
       paths:
       - 'function_app.py'
       - 'requirements.txt'
-    branches:
+      branches:
       - main
   workflow_dispatch:
 
