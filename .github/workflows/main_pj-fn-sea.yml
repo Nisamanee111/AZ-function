@@ -6,9 +6,6 @@ name: Build and deploy Python project to Azure Function App - pj-fn-sea
 
 on:
   push:
-   paths:
-   - 'function_app.py'
-   - 'requirements.txt'
   workflow_dispatch:
 
 env:
