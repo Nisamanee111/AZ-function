@@ -68,7 +68,6 @@ jobs:
         id: deploy-to-function
         with:
           app-name: 'pj-fn-sea'
-          slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7339458651204A758A67F90D0BD0306F }}
           scm-do-build-during-deployment: true
