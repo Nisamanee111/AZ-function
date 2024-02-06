@@ -29,9 +29,9 @@ def timer_trigger_humi(myTimer1: func.TimerRequest) -> None:
     collection = db['Humidity']
     cursor = collection.find().sort("_id", -1).limit(1)
     last_document = next(cursor, None)
-    Temp = last_document.get("Status")
+    Humi = last_document.get("Status")
 
-    if Temp >= 55:
+    if Humi >= 55:
         message = "status", "Humidity over 55"
         send_line_notify(message)
     else:
