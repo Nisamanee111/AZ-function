@@ -3,6 +3,14 @@ import azure.functions as func
 import requests
 from pymongo import MongoClient
 
+def send_line_notify(message):
+    token = 'tWL6dYjuQRCk3S88MdjAeLAQI3yRH6Nkj8QwMtJrddC'
+    url = 'https://notify-api.line.me/api/notify'
+    headers = {'Authorization': f'Bearer {token}'}
+    data = {'message': message}
+    response = requests.post(url, headers=headers, data=data)
+    logging.info(response.text)
+
 app = func.FunctionApp()
 
 @app.schedule(schedule="0 */30 * * * *", arg_name="myTimer", run_on_startup=True,
@@ -16,7 +24,7 @@ def timer_trigger_temp(myTimer: func.TimerRequest) -> None:
     Temp = last_document.get("Status")
 
     if Temp >= 25:
-        message = "status", " Temp over 27"
+        message = "status : Temp over 27"
         send_line_notify(message)
     else:
         logging.info("Not Alert")
@@ -32,18 +40,12 @@ def timer_trigger_humi(myTimer1: func.TimerRequest) -> None:
     Humi = last_document.get("Status")
 
     if Humi >= 55:
-        message = "status", "Humidity over 55"
+        message = "status : Humidity 55 %"
         send_line_notify(message)
     else:
         logging.info("Not Alert")
 
-def send_line_notify(message):
-    token = 'tWL6dYjuQRCk3S88MdjAeLAQI3yRH6Nkj8QwMtJrddC'
-    url = 'https://notify-api.line.me/api/notify'
-    headers = {'Authorization': f'Bearer {token}'}
-    data = {'message': message}
-    response = requests.post(url, headers=headers, data=data)
-    logging.info(response.text)
+
 
     #if myTimer.past_due:
         #logging.info('The timer is past due!')
