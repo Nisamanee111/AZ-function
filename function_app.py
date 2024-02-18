@@ -4,7 +4,7 @@ import requests
 from pymongo import MongoClient
 
 def send_line_notify(message):
-    token = 'tWL6dYjuQRCk3S88MdjAeLAQI3yRH6Nkj8QwMtJrddC'
+    token = 'jd27ujFqDwwtZHLMjQR9Ky1jWLlL483iMVjyW1TgVz9'
     url = 'https://notify-api.line.me/api/notify'
     headers = {'Authorization': f'Bearer {token}'}
     data = {'message': message}
@@ -23,13 +23,13 @@ def timer_trigger_temp(myTimer: func.TimerRequest) -> None:
     last_document = next(cursor, None)
     Temp = last_document.get("Status")
 
-    if Temp >= 25:
-        message = "status : Temp over 27"
+    if Temp >= 27:
+        message = "status : Temperature \n over now is " + str(Temp) + " ํC" 
         send_line_notify(message)
     else:
         logging.info("Not Alert")
 
-@app.schedule(schedule="0 */30 * * * *", arg_name="myTimer1", run_on_startup=True,
+@app.schedule(schedule="* * * * *", arg_name="myTimer1", run_on_startup=True,
               use_monitor=False) 
 def timer_trigger_humi(myTimer1: func.TimerRequest) -> None:
     client = MongoClient('mongodb+srv://nisamanee:passw0rd!@ct-pj-iot.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000')
@@ -40,7 +40,7 @@ def timer_trigger_humi(myTimer1: func.TimerRequest) -> None:
     Humi = last_document.get("Status")
 
     if Humi >= 55:
-        message = "status : Humidity 55 %"
+        message = "status : Humidity \n over now is "+ str(Humi) + " %H" 
         send_line_notify(message)
     else:
         logging.info("Not Alert")
