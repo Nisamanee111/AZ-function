@@ -1,1 +1,1 @@
-#This Repo create for Azure Function!
+# This Repo create for Azure Function!
