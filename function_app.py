@@ -4,7 +4,7 @@ import requests
 from pymongo import MongoClient
 
 def send_line_notify(message):
-    token = 'jd27ujFqDwwtZHLMjQR9Ky1jWLlL483iMVjyW1TgVz9'
+    token = 'eZe8bXFnPleoJVMfNxnKJPJAFWd7TsFxXBpTf9fntGP'
     url = 'https://notify-api.line.me/api/notify'
     headers = {'Authorization': f'Bearer {token}'}
     data = {'message': message}
