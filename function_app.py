@@ -4,7 +4,7 @@ import requests
 from pymongo import MongoClient
 
 def send_line_notify(message):
-    token = 'ACfI4LbD8JP5KhDqsPcLoYnV10Gw7Ho9S6CKCz6REXH'
+    token = 'EdOXGjmTwEszAp9gaHOWzj9qsK72FU9fca9BF8B6Qvz'
 
     url = 'https://notify-api.line.me/api/notify'
     headers = {'Authorization': f'Bearer {token}'}
@@ -40,8 +40,8 @@ def timer_trigger_humi(myTimer1: func.TimerRequest) -> None:
     last_document = next(cursor, None)
     Humi = last_document.get("Status")
 
-    if Humi >= 55:
-        message = "\nHumidity Alert\nHumi now : " + str(Humi) + " %H" + "\nStatus : Red ("+str(Humi)+">55 %H)"
+    if Humi >= 60:
+        message = "\nHumidity Alert\nHumi now : " + str(Humi) + " %" + "\nStatus : Red ("+str(Humi)+">60 %)"
         send_line_notify(message)
     else:
         logging.info("Not Alert")
